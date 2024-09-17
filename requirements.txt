@@ -1,0 +1,5 @@
+crewai
+langchain
+langchain-community
+ollama==0.1.6
+Flask ==2.3.2

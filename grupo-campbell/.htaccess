@@ -1,0 +1,13 @@
+RewriteEngine On
+RewriteBase /grupo-campbell/
+
+# Puedes agregar más reglas según sea necesario
+RewriteRule ^login$ resources/views/auth/login.php [QSA,L]
+RewriteRule ^signin$ resources/views/auth/auth.php [QSA,L]
+RewriteRule ^logout$ resources/views/auth/logout.php [QSA,L]
+RewriteRule ^medical-note$ index.php?view=medicalNote [QSA,L]
+
+# Redirige URLs del estilo /home a /index.php?page=home
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?view=$1 [QSA,L]
