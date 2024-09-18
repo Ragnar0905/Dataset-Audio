@@ -1,5 +1,3 @@
-from src.json_reader import JSONReader
-from src.save_results import OutputHandler
 from src.manager import AnalysisManager
 from src.config import RAW_DATA_PATH
 from flask import Flask, request, jsonify
@@ -19,10 +17,12 @@ def analyze_note():
     # Process medical note
     manager = AnalysisManager()
     medical_records = [{'medical_note': data['medical_note']}]
-    results = manager.analyze_records(medical_records)
     
-    # Return the results
-    return jsonify(results), 200
+    try:
+        results = manager.analyze_records(medical_records)
+        return jsonify(results), 200
+    except Exception as e:
+        return jsonify({"error":str(e)}), 500
 
 if __name__ == '__main__':
     #Debug mode
