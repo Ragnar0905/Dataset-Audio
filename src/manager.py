@@ -17,12 +17,10 @@ class AnalysisManager:
                 print(f"Error: 'record' is not a valid dictionary or 'medical_note' key is missing.")
                 continue
             
-            try: 
-                result = self.analyzer.run_model(record['medical_note'])
-                results.append(result)
-            except Exception as e:
-                print(f"Error processing record {i}: {str(e)}")
-                results.append(f"Error in record {i}")
+            medical_note = record['medical_note']
+            # Ejecuta el analisis en Ollama
+            result = self.analyzer.run_model(medical_note)
+            results.append(result)
                 
         return results
 

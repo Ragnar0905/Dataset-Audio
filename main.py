@@ -1,7 +1,8 @@
 from src.manager import AnalysisManager
-from src.config import RAW_DATA_PATH
 from flask import Flask, request, jsonify
+import os
 
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 app = Flask(__name__)
 
 # Dynamics data from the frontend
@@ -13,7 +14,6 @@ def analyze_note():
     # Verify medical note
     if not data or 'medical_note' not in data:
         return jsonify({"error": "No medical note provided"}), 400
-    
     # Process medical note
     manager = AnalysisManager()
     medical_records = [{'medical_note': data['medical_note']}]
